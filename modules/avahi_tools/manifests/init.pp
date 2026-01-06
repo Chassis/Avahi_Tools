@@ -1,6 +1,8 @@
 # A Chassis extension to install packages to help debug Avahi issues
+#
+# @param config Hash containing configuration data from Chassis
 class avahi_tools (
-  $config,
+  Hash $config,
 ) {
   if ( ! empty( $::config[disabled_extensions] ) and 'chassis/ahavi_tools' in $config[disabled_extensions] ) {
     $package = absent
@@ -11,10 +13,6 @@ class avahi_tools (
   }
 
   package { 'avahi-utils':
-    ensure => $package,
-  }
-
-  package { 'avahi-dbg':
     ensure => $package,
   }
 }
